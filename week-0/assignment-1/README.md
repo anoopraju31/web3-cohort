@@ -2,6 +2,9 @@
 What if I ask you the following question — Give me an input string that outputs a `SHA-256 hash` that starts with `00000` . How will you do it?
 
 A: You will have to brute force until you find a value that starts with `00000`
+
+![](Screenshot_2024-08-02_at_6.46.38_PM.png)
+
 ```js
 const crypto = require('crypto');
 
