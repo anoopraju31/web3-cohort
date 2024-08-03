@@ -1,4 +1,4 @@
 # Web 3 Cohort
 
 ### Contents
-- [**Week 0: Orientation**](week-0/)
+- [**Week 1: Orientation**](week-1/) 
