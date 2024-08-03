@@ -69,3 +69,32 @@ The issues surrounding *inflating currencies*, *fractional reserve banking*, *ba
 
 
 The combined issues of inflating currencies, fractional reserve banking, bailouts, and depreciation emphasize the need for a more robust and transparent financial system. Blockchain technology addresses these challenges by offering a decentralized, immutable, and transparent ledger system that enhances trust, reduces risks, and improves efficiency. This makes blockchain a compelling solution to the inherent problems in traditional financial structures.
+
+### Intro to hashing
+- **Hashing** is a process that *transforms input data* (of any size) into a fixed-size string of characters.
+
+![](images/Screenshot_2024-08-02_at_6.14.04_PM.png)
+
+- Hash functions have several important properties:
+    - **Deterministic:** The same input will always produce the same output.
+    - **Fast computation:** The hash value can be quickly computed for any given data.
+    - **Pre-image resistance:** It should be computationally infeasible to reverse the hash function (i.e., find the original input given its hash output).
+    - **Small changes in input produce large changes in output:** Even a tiny change in the input should drastically change the hash output.
+    - **Collision resistance:** It should be computationally infeasible to find two different inputs that produce the same hash output.
+
+#### SHA256
+**SHA-256 (Secure Hash Algorithm 256-bit)** is a cryptographic hash function that produces a *256-bit (32-byte) hash value* from an input. It's designed to be a *one-way function*, meaning it generates a unique, *fixed-size output* that is nearly impossible to reverse-engineer to retrieve the original input. SHA-256 is widely used for secure data encryption, digital signatures, and data integrity checks due to its robustness and collision-resistant properties.
+
+![](images/Screenshot_2024-08-02_at_6.18.42_PM.png)
+You can try out SHA256 [here](https://emn178.github.io/online-tools/sha256.html).
+
+#### Node.js code for generating SHA-256 
+```js
+const crypto = require('crypto');
+
+const input = "100xdevs";
+const hash = crypto.createHash('sha256').update(input).digest('hex');
+
+console.log(hash)
+```
+![](images/Screenshot_2024-08-02_at_6.21.25_PM.png)
