@@ -6,6 +6,13 @@
     - [**Fractional Reserve Banking**](#fractional-reserve-banking)
     - [**Bailouts**](#bailouts)
     - [**Depreciation**](#depreciation)
+- [**Intro to hashing**](#intro-to-hashing)
+    - [**SHA256**](#sha256)
+    - [**Node.js code for generating SHA-256**](#nodejs-code-for-generating-sha-256)
+- [**Intro to Proof of Work**](#intro-to-proof-of-work)
+    - [**What is a block**](#what-is-a-block)
+    - [**what is nonce**](#what-is-nonce)
+    - [**Assignments**](#assignments)
 
 ### Why blockchains?
 The issues surrounding *inflating currencies*, *fractional reserve banking*, *bailouts*, and *depreciation* have collectively highlighted the need for more robust and transparent financial systems, leading to the development of blockchain technology.
@@ -98,3 +105,20 @@ const hash = crypto.createHash('sha256').update(input).digest('hex');
 console.log(hash)
 ```
 ![](images/Screenshot_2024-08-02_at_6.21.25_PM.png)
+
+
+### Intro to Proof of Work
+Proof of Work (PoW) is a consensus algorithm used in blockchain networks to secure transactions and validate new blocks. In PoW, participants (miners) compete to solve complex mathematical puzzles, which require significant computational resources and time. The first miner to solve the puzzle gets to add the new block to the blockchain and is rewarded, usually with cryptocurrency. This process helps prevent fraud and attacks, ensures that all network participants agree on the state of the blockchain, and makes it costly and resource-intensive to alter or attack the blockchain.
+
+#### What is a block
+In blockchain technology, a **block** is a **container** or **record** of data that holds a collection of transactions or other relevant information. Each block contains a unique identifier called a hash, a timestamp, and a reference to the previous block's hash, linking them in a chain. This structure ensures that blocks are securely connected in sequence, making the blockchain a tamper-resistant ledger of all transactions or data entries.
+
+#### what is nonce
+A **nonce** (short for **"number used once"**) is a random or arbitrary number that is used only once in a cryptographic communication. In blockchain, especially within Proof of Work (PoW) systems, a nonce is a variable value that miners adjust to solve a cryptographic puzzle. The goal is to find a nonce that, when combined with the block's data and passed through a hash function, produces a hash value meeting certain criteria, such as a specific number of leading zeros. Finding the correct nonce ensures that the block is valid and allows the miner to add it to the blockchain.
+
+#### Assignments
+checkout the assignments:
+1. [Assignment 1](assignments/assignment-1/)
+2. [Assignment 2](assignments/assignment-2/)
+3. [Assignment 3](assignments/assignment-3/)
+4. [Assignment 4](https://andersbrownworth.com/blockchain/)
