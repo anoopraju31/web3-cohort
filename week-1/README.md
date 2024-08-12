@@ -6,13 +6,19 @@
     - [**Fractional Reserve Banking**](#fractional-reserve-banking)
     - [**Bailouts**](#bailouts)
     - [**Depreciation**](#depreciation)
+- [**What is Blockchain?**](#what-is-block)
+    - [**Main Characteristics of Blockchain**](#main-characteristics-of-blockchain)
+    - [**Purpose of Blockchain**](#purpose-of-blockchain)
+    - [**How to Create a New Currency with Blockchain**](#how-to-create-a-new-currency-with-blockchain)
 - [**Intro to hashing**](#intro-to-hashing)
     - [**SHA256**](#sha256)
     - [**Node.js code for generating SHA-256**](#nodejs-code-for-generating-sha-256)
+    - [**Hashing vs Encryption**](#hashing-vs-encryption)
 - [**Intro to Proof of Work**](#intro-to-proof-of-work)
     - [**What is a block**](#what-is-a-block)
     - [**what is nonce**](#what-is-nonce)
     - [**Assignments**](#assignments)
+- [**Important terms**](#important-terms)
 
 ### Why blockchains?
 The issues surrounding *inflating currencies*, *fractional reserve banking*, *bailouts*, and *depreciation* have collectively highlighted the need for more robust and transparent financial systems, leading to the development of blockchain technology.
@@ -77,6 +83,41 @@ The issues surrounding *inflating currencies*, *fractional reserve banking*, *ba
 
 The combined issues of inflating currencies, fractional reserve banking, bailouts, and depreciation emphasize the need for a more robust and transparent financial system. Blockchain technology addresses these challenges by offering a decentralized, immutable, and transparent ledger system that enhances trust, reduces risks, and improves efficiency. This makes blockchain a compelling solution to the inherent problems in traditional financial structures.
 
+
+### What is Blockchain?
+Blockchain is a decentralized and distributed digital ledger that records transactions across many computers, ensuring data security and transparency. It operates without a central authority, using cryptographic techniques to verify and add new transactions.
+
+#### Main Characteristics of Blockchain:
+1. **Decentralization:** Blockchain is managed across multiple nodes (machines), ensuring no single entity controls the data. Each node stores the entire blockchain, providing access to all data on the blockchain.
+2. **Immutability:** Once data is recorded on a blockchain, it cannot be easily altered or deleted, ensuring the integrity of the records.
+3. **Transparency:** All transactions recorded on a blockchain are visible to all participants, promoting openness and trust.
+4. **Consensus Mechanisms:** Nodes in the network follow consensus mechanisms (e.g., Proof of Work, Proof of Stake) to validate transactions and add them to the blockchain.
+
+#### Purpose of Blockchain
+The purpose of blockchain is to create a network of computers that agree upon a common state of data. This ensures that:
+    - Any person or organization can participate in the process.
+    - No single person or organization can control the process.
+Blockchain enables secure, transparent, and tamper-proof transactions without the need for a central authority.
+
+#### How to Create a New Currency with Blockchain
+There is a need for trustless, anonymized, and decentralized form of money, blockchain solves it for us.
+
+![](images/Designer_(1).png)
+
+Key points:
+1. **Avoiding Central Ownership:** 
+    - Centralized control over currency can lead to misuse of power and lack of transparency.
+    - Blockchain technology eliminates the need for a central authority, distributing control among multiple nodes.
+2. **Trustless System:** 
+    - Blockchain enables the creation of currency without needing to trust a central authority.
+    - Transactions are verified by consensus mechanisms, ensuring security and integrity.
+3. **Anonymization:**
+    - Blockchain technology supports anonymized transactions, protecting the privacy of users while maintaining transparency of the overall system.
+4. **Decentralization:** 
+    - Decentralized money operates on a network of nodes, preventing any single entity from having control and reducing the risk of manipulation or failure.
+
+By leveraging these principles, blockchain technology allows for the creation of new currencies that are secure, transparent, and free from centralized control.
+
 ### Intro to hashing
 - **Hashing** is a process that *transforms input data* (of any size) into a fixed-size string of characters.
 
@@ -106,6 +147,16 @@ console.log(hash)
 ```
 ![](images/Screenshot_2024-08-02_at_6.21.25_PM.png)
 
+### Hashing vs. Encryption
+
+|                             Hashing                                 |                              Encryption                             |
+|---------------------------------------------------------------------|---------------------------------------------------------------------|
+| Converts data into a fixed-size string.                             | Converts data into a different format.                              |
+| Irreversible (one-way function).                                    | Reversible (two-way function) using a key.                          |
+| Used for data integrity verification.                               | Used for data confidentiality                                       |
+| example: password storage, file verification.                       | example: securing communication, data storage.                      |
+
+![](images/Untitled.png)
 
 ### Intro to Proof of Work
 Proof of Work (PoW) is a consensus algorithm used in blockchain networks to secure transactions and validate new blocks. In PoW, participants (miners) compete to solve complex mathematical puzzles, which require significant computational resources and time. The first miner to solve the puzzle gets to add the new block to the blockchain and is rewarded, usually with cryptocurrency. This process helps prevent fraud and attacks, ensures that all network participants agree on the state of the blockchain, and makes it costly and resource-intensive to alter or attack the blockchain.
@@ -122,3 +173,38 @@ checkout the assignments:
 2. [Assignment 2](assignments/assignment-2/)
 3. [Assignment 3](assignments/assignment-3/)
 4. [Assignment 4](https://andersbrownworth.com/blockchain/)
+
+### Important terms
+1. **Blocks:**
+    - Data is stored in `blocks`.
+    - Each block contains:
+        - A list of transactions.
+        - A timestamp.
+        - A cryptographic hash of the previous block.
+
+2. **Chain:**
+    - Blocks are linked together in a chronological order.
+    - This creates a "chain" of blocks, hence the name `blockchain`.
+
+3. **Nonce:**
+    - A unique number that miners must find to produce a valid hash.
+    - Used only once, it ensures the resulting hash satisfies the blockchain's difficulty conditions.
+
+4. **Finding Nonce:**
+    - Miners and Compute Power
+    - Miners produce blocks in the blockchain.
+    - The probability of producing the next block and earning the reward increases with more compute power.
+    - Compute power is needed to calculate the correct nonce.
+
+5. **Nonce and Proof of Work (PoW):**
+    - The nonce is a number that, when added to the block data and hashed, produces a hash meeting the network's difficulty criteria.
+    - The process of finding this nonce is known as `Proof of Work (PoW)`.
+
+6. **Consensus Mechanism:**
+    - A method ensuring all participants agree on the blockchain's state and the validity of transactions.
+    - Acts as a rulebook for validating transactions and blocks.
+
+7. **Proof of Work (PoW):**
+    - A consensus mechanism used in blockchain networks.
+    - Requires solving complex mathematical problems to find the correct nonce.
+    - Ensures the security and integrity of the blockchain by validating transactions and adding new blocks.
