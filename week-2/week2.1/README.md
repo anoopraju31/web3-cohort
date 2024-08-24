@@ -5,6 +5,9 @@
     - [**How do banks authenticate user?**](#how-do-banks-authenticate-user)  
     - [**How do blockchains authenticate user?**](#how-do-blockchains-authenticate-user)
         - [**Public private Key pair**](#public-private-key-pair)
+- [**Bits and bytes**](#bits-and-bytes)
+    - [**What is a Bit?**](#what-is-a-bit)
+
 
 
 
@@ -52,3 +55,40 @@ A `public-private` key pair is a set of two keys used in `asymmetric cryptograph
 
 - **Private Key:** The private key is a string that is kept secret and used to sign transactions.
     - ![](images/private_key_blockchain.png)
+
+
+## Bits and bytes
+### What is a bit?
+A `bit` is the **smallest unit** of information in a computer. It can be either `0` or `1`, and it is used to represent **boolean values** (`true` or `false`). 
+
+### What is a byte?
+A byte is a group of `8 bits`. It’s the standard unit of data used to represent a single character in memory. Since each bit can be either `0` or `1`, a byte can have **2^8^** (`256`) possible values, ranging from `0` to `255`.
+
+### Representing bits and bytes in JS
+- **Bit:**
+    ```js
+    const x = 0;
+    console.log(x);
+    ```
+- **Byte:**
+    ```js
+    const x = 202
+    console.log(x);
+    ```
+- **Array of bytes:**
+    ```js
+    const bytes = [202, 244, 1, 23]
+    console.log(bytes);
+    ```
+
+### UInt8Array
+- A better way to represent an array of bytes is to use a **UInt8Array** in JS. 
+```js
+const bytes = new Uint8Array([202, 244, 1, 23])
+console.log(bytes);
+```
+
+### Why use UInt8Array over native arrays?
+-They use less space. Every number takes `64 bits` (`8 bytes`). But every value in a **UInt8Array** takes `1 byte`.
+- `UInt8Array` Enforces constraints - It makes sure every element doesn’t exceed `255`.
+
