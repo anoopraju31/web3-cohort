@@ -25,6 +25,19 @@
     - [**Base58**](#base58)
         - [**Encode**](#encode-1)
         - [**Decode**](#decode)
+    - [**ASCII VS UTF-8**](#ascii-vs-utf-8)
+- [**Hashing VS Encryption**](#hashing-vs-encryption)
+    - [**Hashing**](#hashing)
+    - [**Encryption**](#encryption)
+        - [**Symmetric Encryption**](#symmetric-encryption)
+        - [**Asymmetric Encryption**](#asymetric-encryption)
+- [**Asymetric Cryptography**](#asymetric-cryptography)
+    - [**Common Asymmetric Encryption Algorithms:**](#common-asymetric-encryption-algorithms)
+        - [**RSA (Rivest-Shamir-Adleman)**](#rsa-rivest-shamir-adleman)
+        - [**Elliptic Curve Cryptography (ECC)**](#elliptic-curve-cryptography-ecc)
+    - [**Common Eleptic Curves**](#common-elliptic-curves)
+    - [**Few usecases of public key cryptography**](#few-usecases-of-public-key-cryptography)
+    
 
 
 ## Banks vs Blockchains
@@ -265,3 +278,127 @@ console.log(byteArrayFromBase58); // Output: Uint8Array(5) [72, 101, 108, 108, 1
 ### ASCII VS UTF-8
 - ASCII is a `7-bit` encoding scheme that represents characters as a series of binary values. It is the most commonly used encoding scheme in computer science.
 - UTF-8 is a variable-width encoding scheme that represents characters as a series of binary values. It is the most commonly used encoding scheme in computer science. UTF-8 uses `1` to `4` bytes to encode each character.
+
+## Hashing VS Encryption
+### Hashing
+Hashing is a one-way function that takes an input and produces a fixed-size output, called a hash. The output is unique to the input, meaning that even a small change in the input will result in a completely different output. Hashing is commonly used for data integrity checks, password storage, and digital signatures.
+- Hashing is a process of converting data (like a file or a message) into a fixed-size string of characters, which typically appears random. 
+- Common hashing algorithms - SHA-256, MD5
+![](images/hashing.png)
+
+### Encryption
+Encryption is a process that takes an input and produces an output, called a ciphertext. The output is different from the input, meaning that even a small change in the input will result in a completely different output. Encryption is commonly used for data privacy and security, as well as for secure communication over the internet.
+- **Key Characteristics:**
+    - **Reversible:** With the correct key, the ciphertext can be decrypted back to plaintext.
+    - **Key-dependent:** The security of encryption relies on the secrecy of the key.
+
+- **Two types of encryption:**
+    - **Symmetric Encryption:** The same key is used for both encryption and decryption. The key must be kept secret.
+    - **Asymmetric Encryption:** The public key is used for encryption, while the private key is used for decryption. The keys can be kept secret.
+
+#### Symmetric Encryption
+- The same key is used for both encryption and decryption. The key must be kept secret.
+- The encryption algorithm is reversible, meaning that the ciphertext can be decrypted back to plaintext.
+![](images/symetric_encryption.png)
+
+```js
+const crypto = require('crypto');
+
+// Generate a random encryption key
+const key = crypto.randomBytes(32); // 32 bytes = 256 bits
+const iv = crypto.randomBytes(16); // Initialization vector (IV)
+
+// Function to encrypt text
+function encrypt(text) {
+    const cipher = crypto.createCipheriv('aes-256-cbc', key, iv);
+    let encrypted = cipher.update(text, 'utf8', 'hex');
+    encrypted += cipher.final('hex');
+    return encrypted;
+}
+
+// Function to decrypt text
+function decrypt(encryptedText) {
+    const decipher = crypto.createDecipheriv('aes-256-cbc', key, iv);
+    let decrypted = decipher.update(encryptedText, 'hex', 'utf8');
+    decrypted += decipher.final('utf8');
+    return decrypted;
+}
+
+// Example usage
+const textToEncrypt = 'Hello, World!';
+const encryptedText = encrypt(textToEncrypt);
+const decryptedText = decrypt(encryptedText);
+
+console.log('Original Text:', textToEncrypt);
+console.log('Encrypted Text:', encryptedText);
+console.log('Decrypted Text:', decryptedText);
+```
+
+#### Asymmetric Encryption
+- The public key is used for encryption, while the private key is used for decryption. The keys can be kept secret.
+- The encryption algorithm is reversible, meaning that the ciphertext can be decrypted back to plaintext.
+![](images/asymetric_encryption.png)
+
+```js
+const crypto = require('crypto');
+
+// Generate a random encryption key
+const key = crypto.randomBytes(32); // 32 bytes = 256 bits
+const iv = crypto.randomBytes(16); // Initialization vector (IV)
+
+// Function to encrypt text
+function encrypt(text) {
+    const cipher = crypto.createCipheriv('aes-256-cbc', key, iv);
+    let encrypted = cipher.update(text, 'utf8', 'hex');
+    encrypted += cipher.final('hex');
+    return encrypted;
+}
+
+// Function to decrypt text
+function decrypt(encryptedText) {
+    const decipher = crypto.createDecipheriv('aes-256-cbc', key, iv);
+    let decrypted = decipher.update(encryptedText, 'hex', 'utf8');
+    decrypted += decipher.final('utf8');
+    return decrypted;
+}
+
+// Example usage
+const textToEncrypt = 'Hello, World!';
+const encryptedText = encrypt(textToEncrypt);
+const decryptedText = decrypt(encryptedText);
+
+console.log('Original Text:', textToEncrypt);
+console.log('Encrypted Text:', encryptedText);
+console.log('Decrypted Text:', decryptedText);
+```
+
+
+## Asymetric Cryptography
+- **Asymmetric encryption**, also known as **public-key cryptography**, is a type of encryption that uses a pair of keys: a `public key` and a `private key`. 
+- The keys are mathematically related, but it is computationally infeasible to derive the private key from the public key.
+- **Public Key:** The public key is a string that can be shared openly
+- **Private Key:** The private key is a secret cryptographic code that must be kept confidential. It is used to decrypt data encrypted with the corresponding public key or to create digital signatures.
+
+![](images/asymetric_encryption.png)
+
+### Common Asymmetric Encryption Algorithms:
+1. **RSA (Rivest-Shamir-Adleman)**
+    - RSA is a widely used asymmetric encryption algorithm that is based on the difficulty of factoring large prime numbers. It is commonly used for secure data transmission and digital signatures.
+2. **Elliptic Curve Cryptography (ECC)**
+    - ECC is a type of asymmetric encryption algorithm that is based on the mathematics of elliptic curves. It is commonly used for secure data transmission and digital signatures.
+3. **EdDSA - Edwards-curve Digital Signature Algorithm  - SOL**
+    - EdDSA is a type of asymmetric encryption algorithm that is based on the mathematics of elliptic curves. It is commonly used for secure data transmission and digital signatures.
+
+#### Common Eleptic Curves
+1. **secp256k1 - BTC and ETH**
+2. **ed25519 - SOL**
+
+#### Few usecases of public key cryptography - 
+1. **SSL/TLS certificates:**
+    - SSL/TLS certificates are used to secure communication over the internet. They are based on public key cryptography and are used to establish a secure connection between a client and a server.
+2. **SSH keys to connect to servers/push to github:**
+    - SSH keys are used to securely connect to servers and push code to GitHub. They are based on public key cryptography and are used to establish a secure connection between a client and a server.
+3. **Blockchains and cryptocurrencies:**
+    - Blockchains and cryptocurrencies are based on public key cryptography and are used to secure transactions and verify the authenticity of data.
+    - In blockchains, each transaction is signed using a private key, and the public key is used to verify the authenticity of the transaction.
+
