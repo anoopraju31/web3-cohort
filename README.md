@@ -5,3 +5,4 @@
 - [**Week 2: Public key cryptography**](week-2/)
 - [**Week 3: Creating a web based wallet**](week-3/)
 - [**Week 4: Solana Jargons, Programming Models, Tokens**](week-4/)
+- [**Week 5: Solana wallet adapter, Client side solana**](week-5/)
