@@ -14,6 +14,7 @@
     - [**What is Lamports?**](#what-is-lamports)
 - [**RPC Server**](#rpc-server)
 - [**Common RPC calls on Solana**](#common-rpc-calls-on-solana)
+- [**Common RPC calls on Ethereum**](#common-rpc-calls-on-ethereum)
 
 ## Keccak-256
 Keccak-256 is a cryptographic hash function, which is part of the Keccak family. Keccak was chosen as the winner of the NIST (National Institute of Standards and Technology) SHA-3 competition and became the basis for the SHA-3 (Secure Hash Algorithm 3) standard.
@@ -134,3 +135,32 @@ console.log(LAMPORTS_PER_SOL)
             "method": "getTransactionCount"
         }
     ``` 
+
+## Common RPC calls on Ethereum
+1. **Get balance**
+    ```js
+    {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "eth_getBalance",
+        "params": ["0xaeaa570b50ad00377ff8add27c50a7667c8f1811", "latest"]
+    }
+    ```
+2. **Get latest block**
+    ```js
+    {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "eth_blockNumber"
+    }
+    ```
+3. **Get block by number**
+    ```js
+    {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "eth_getBlockByNumber",
+        "params": ["0x1396d66", true]
+    }
+    ```
+
