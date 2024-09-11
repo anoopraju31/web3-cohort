@@ -7,6 +7,7 @@
     - [**Properties of Keccak-256 hashing algorithm**](#properties-of-keccak-256-hashing-algorithm)
 - [**Public-Private Key Pair in Ethereum**](#public-private-key-pair-in-ethereum)
 - [**Public-Private Key Pair in Solana**](#public-private-key-pair-in-solana)
+- [**Frontend vs Backend**](#frontend-vs-backend)
 - [**RPC, JSON-RPC**](#rpc-json-rpc)
 - [**Wei, Lamports**](#wei-lamports)
     - [**What is Wei?**](#what-is-wei)
@@ -38,18 +39,33 @@ Keccak-256 is a cryptographic hash function, which is part of the Keccak family.
 4. **Implementation**: It's important to ensure that the implementation of Keccak256 used is secure and free from vulnerabilities. Additionally, the implementation should be updated regularly to ensure that any discovered vulnerabilities are patched.
 
 ## Public-Private Key Pair in Ethereum
+![](images/key-in-eth.avif)
 - Ethereum public addresses are `20 bytes` (`0x8BCd4591F46e809B15A490F5C6eD031FDDE0bee0`).
 - When generating the public key for an ETH address
     - Initially, a public key is generated using **elliptic curve cryptography**. 
     - The public key is then hashed using the `Keccak-256` algorithm.
     - fter hashing the public key with `Keccak-256`, you get a ``32-byte` hash. The Ethereum address is derived from this hash by taking only the **last 20 bytes of the hash output**.
     - The resulting `20-byte` value is then converted into **hexadecimal format** and prefixed with `'0x'` to form the `Ethereum` address. This is the address that users use to send and receive ETH and interact with smart contracts.
-- [How backpack does it](https://github.com/coral-xyz/backpack/blob/master/packages/secure-background/src/services/evm/util.ts#L3)
-- [How ethers does it under the hood](https://github.com/ethers-io/ethers.js/blob/main/src.ts/transaction/address.ts#L12)
+- [Backpack implemenation](https://github.com/coral-xyz/backpack/blob/master/packages/secure-background/src/services/evm/util.ts#L3)
+- [Ethers.js implemenation](https://github.com/ethers-io/ethers.js/blob/main/src.ts/transaction/address.ts#L12)
 
 ## Public-Private Key Pair in Solana
-- `Solana` public keys are `32 bytes` (5W4oGgDHqir3KNEcmiMn6tNHmbWjC7PgW11sk4AwWbpe). 
-- No need for **hashing/chopping**.
+![](images/key-in-sol.avif)
+- `Solana` public keys are `32 bytes` (`5W4oGgDHqir3KNEcmiMn6tNHmbWjC7PgW11sk4AwWbpe`). 
+- Unlike Ethereum, Solana addresses do not require **hashing/chopping**.
+
+## Frontend vs Backend
+![](images/frontend-vs-backend.avif)
+- **Backend Servers**: Run your backend logic.
+- **Frontend**: Interacts with backend servers via HTTP requests.
+- **Example of a traditional backend request**: **JSONPlaceholder API**.
+- **Postman**: Allows sending requests to backend servers without using a browser.
+
+![](images/postman.avif)
+
+- Something similar happens on block explorers as well. When you query an address it sends a request on blockchain network.
+    1. **Solscan**
+    2. **Ethereum (ETH) Blockchain Explorer (etherscan.io)**
 
 ## RPC, JSON-RPC
 `RPC`, or `Remote Procedure Call`, is a protocol or mechanism that allows a program to *execute a procedure* (*subroutine*) on a different address space, often on another computer across a network, as if it were a local procedure call. 
