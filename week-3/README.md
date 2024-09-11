@@ -12,7 +12,7 @@
     - [**What is Wei?**](#what-is-wei)
     - [**What is Gwei?**](#what-is-gwei)
     - [**What is Lamports?**](#what-is-lamports)
-
+- [**RPC Server**](#rpc-server)
 
 ## Keccak-256
 Keccak-256 is a cryptographic hash function, which is part of the Keccak family. Keccak was chosen as the winner of the NIST (National Institute of Standards and Technology) SHA-3 competition and became the basis for the SHA-3 (Secure Hash Algorithm 3) standard.
@@ -88,3 +88,15 @@ const { LAMPORTS_PER_SOL } = require("@solana/web3.js")
 
 console.log(LAMPORTS_PER_SOL)
 ```
+
+## RPC Server
+- An `RPC server` provides a way for *external clients to interact with the blockchain network*. 
+- `RPC` stands for `Remote Procedure Call`, and an RPC server exposes an API that allows clients to send requests and receive responses from the blockchain.
+- An RPC server is a service that listens for JSON-RPC requests from clients, processes these requests, and returns the results. 
+- It acts as an intermediary between the blockchain and external applications or services.
+- An `RPC (Remote Procedure Call)` server is not inherently part of the blockchain network itself, nor does it participate in staking or consensus mechanisms
+- You can grab your own RPC server from one of many providers: 
+    1. `Quicknode`
+    2. `Alchemy`
+    3. `Helius`
+    4. `Infura`
