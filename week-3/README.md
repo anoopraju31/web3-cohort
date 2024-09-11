@@ -95,6 +95,9 @@ console.log(LAMPORTS_PER_SOL)
 - An RPC server is a service that listens for JSON-RPC requests from clients, processes these requests, and returns the results. 
 - It acts as an intermediary between the blockchain and external applications or services.
 - An `RPC (Remote Procedure Call)` server is not inherently part of the blockchain network itself, nor does it participate in staking or consensus mechanisms
+ 
+![](images/rpc-server.avif)
+
 - You can grab your own RPC server from one of many providers: 
     1. `Quicknode`
     2. `Alchemy`
