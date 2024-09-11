@@ -229,7 +229,7 @@ function App() {
 export default App
 ```
 
-6. 4. Create a new component called `SolanaWalletSeedPhrase.jsx` which takes `mnemonic` and `setMnemonic` as props
+6. Create a new component called `SolanaWalletSeedPhrase.jsx` which takes `mnemonic` and `setMnemonic` as props
 ```js 
 function SolanaWalletSeedPhrase({ mnemonic, setMnemonic }) {
     return (
