@@ -6,6 +6,8 @@
 - [**Ethereum: A Revolutionary Solution**](#ethereum-a-revolutionary-solution)
 - [**Solana: A New Frontier**](#solana-a-new-frontier)
 - [**Accounts in Solana**](#accounts-in-solana)
+- [**Programs/Smart Contracts**](#programssmart-contracts)
+- [**Rent on Solana**](#rent-on-solana)
 
 ## Limitations of Bitcoin
 - `Bitcoin` primarily serves as a `decentralized currency`.
@@ -74,3 +76,86 @@ contract Counter {
         - Example of Program Account (Data, Lamports and Executable code): [TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA](https://explorer.solana.com/address/TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA)
         - ![](images/program-account.avif)
 
+
+
+
+
+
+
+## Programs/Smart Contracts
+- `ETH` was one of the first blockchains to introduce the concept of decentralized `state` / `programs`. These are popularly known as `smart contracts` on the ETH blockchain.
+- Here is an example of ETH smart contract:
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract Counter {
+    uint public count;
+
+    // Constructor to initialize count
+    constructor() {
+        count = 0;
+    }
+
+    // Function to increment the count
+    function increment() public {
+        count += 1;
+    }
+
+    // Function to decrement the count
+    function decrement() public {
+        require(count > 0, "Count cannot be negative");
+        count -= 1;
+    }
+    
+    // Function to get the current count
+    function getCount() public view returns (uint) {
+        return count;
+    }
+}
+```
+- Here is a simple Node.js HTTP server that does something similar
+```js
+const express = require('express');
+const app = express();
+const port = 3000;
+
+// Middleware to parse JSON bodies
+app.use(express.json());
+
+// Initialize count
+let count = 0;
+
+// Route to increment the count
+app.post('/increment', (req, res) => {
+  count += 1;
+  res.json({ count });
+});
+
+// Route to decrement the count
+app.post('/decrement', (req, res) => {
+  if (count > 0) {
+    count -= 1;
+    res.json({ count });
+  } else {
+    res.status(400).json({ error: 'Count cannot be negative' });
+  }
+});
+
+// Route to get the current count
+app.get('/count', (req, res) => {
+  res.json({ count });
+});
+
+// Start the server
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
+});
+```
+- **HTTP Servers** are deployed on cloud providers like `GCP, Azure`.
+- **Smart contracts / programs** are deployed on the `blockchain`.
+
+## Rent on Solana
+- **Purpose of Rent**: To prevent the blockchain from being clogged with inactive or unnecessary data, Solana charges rent for storing data.
+- **Rent Calculation**: Rent is based on the storage size and the duration the account remains on the blockchain.
+- **Rent Exemption**: If an account maintains a balance above a certain threshold, it becomes "rent-exempt," meaning it does not incur further rent charges. The rent paid is refundable when the account is closed.
