@@ -15,6 +15,7 @@
 - [**RPC Server**](#rpc-server)
 - [**Common RPC calls on Solana**](#common-rpc-calls-on-solana)
 - [**Common RPC calls on Ethereum**](#common-rpc-calls-on-ethereum)
+- [**Creating a web based wallet**](#creating-a-web-based-wallet)
 
 ## Keccak-256
 Keccak-256 is a cryptographic hash function, which is part of the Keccak family. Keccak was chosen as the winner of the NIST (National Institute of Standards and Technology) SHA-3 competition and became the basis for the SHA-3 (Secure Hash Algorithm 3) standard.
@@ -164,3 +165,206 @@ console.log(LAMPORTS_PER_SOL)
     }
     ```
 
+## Creating a web based wallet
+- A web based wallet is a web application that allows users to interact with the blockchain network using their web browser.
+- It provides a user-friendly interface for managing their cryptocurrency assets, such as Ethereum and Solana.
+
+### Prerequisites
+1. Knowledge of HTML, CSS, and JavaScript
+2. Basic understanding of blockchain technology
+3. Familiarity with React.js
+
+### Steps to create a web based wallet
+1. Create a new React.js project using vite
+```bash
+npm create vite@latest
+```
+
+2. Install the required dependencies
+```bash
+npm install 
+```
+
+3. Add node-pollyfils
+```bash
+npm install node-polyfill-webpack-plugin
+```
+```js
+// vite.config.js
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import { nodePolyfills } from 'vite-plugin-node-polyfills'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+    plugins: [react(), nodePolyfills()],
+})
+```
+
+4. Clean up  App.jsx
+```js
+function App() {
+    return (
+        <div>
+        </div>
+    )
+}
+
+export default App
+```
+
+5. Create a mnemonics state variable in `App.jsx`
+```js
+import { useState } from 'react'
+
+function App() {
+    const [mnemonic, setMnemonic] = useState('')
+
+    return (
+        <div>
+        </div>
+    )
+}
+
+export default App
+```
+
+6. 4. Create a new component called `SolanaWalletSeedPhrase.jsx` which takes `mnemonic` and `setMnemonic` as props
+```js 
+function SolanaWalletSeedPhrase({ mnemonic, setMnemonic }) {
+    return (
+        <div>
+        </div>
+    )
+}
+
+export default SolanaWalletSeedPhrase
+```
+
+7. Add `SolanaWalletSeedPhrase` component to `App.jsx`
+```js
+import { useState } from 'react'
+import SolanaWalletSeedPhrase from './SolanaWalletSeedPhrase'
+
+function App() {
+    const [mnemonic, setMnemonic] = useState('')
+
+    return (
+        <div>
+            <SolanaWalletSeedPhrase mnemonic={mnemonic} setMnemonic={setMnemonic} />
+        </div>
+    )
+}
+
+export default App
+```
+
+8. Add a button that lets the user generate a fresh mnemonic phrase. 
+    - [reference for the project](https://projects.100xdevs.com/tracks/public-private-keys/Public-Key-Cryptography-9)
+    - [referecnce - BIP39](https://github.com/hujiulong/web-bip39)
+```bash
+npm install bip39
+```
+```js
+import { useState } from 'react'
+import { generateMnemonic } from 'bip39'
+
+function SolanaWalletSeedPhrase({mnemonic, setMnemonic}) {
+    const generateMnemonics = async () => {
+            const mnemonic = await generateMnemonic()
+            setMnemonic(mnemonic)
+    }
+
+    return (
+        <div>
+            <button onClick={generateMnemonics}>Create Seed Phrase</button>
+        </div>
+    )
+}
+
+export default SolanaWalletSeedPhrase
+```
+
+9. Display the mnemonic in an input box in `SolanaWalletSeedPhrase.jsx`
+```js
+import { useState } from 'react'
+import { generateMnemonic } from 'bip39'
+
+function SolanaWalletSeedPhrase({mnemonic, setMnemonic}) {
+    const generateMnemonics = async () => {
+            const mnemonic = await generateMnemonic()
+            setMnemonic(mnemonic)
+    }
+
+    return (
+        <div>
+            <input type="text" value={mnemonic} onChange={(e) => setMnemonic(e.target.value)} />
+            <button onClick={generateMnemonics}>Create Seed Phrase</button>
+        </div>
+    )
+}
+
+export default SolanaWalletSeedPhrase
+```
+
+10. Create `SolanaWallet.jsx` component
+    - [reference](https://projects.100xdevs.com/tracks/public-private-keys/Public-Key-Cryptography-10)
+```js
+import { useState } from "react";
+import { mnemonicToSeed } from "bip39";
+import { Wallet, HDNodeWallet } from "ethers";
+
+function SolanaWallet() {
+    const [currentIndex, setCurrentIndex] = useState(0)
+    const [addresses, setAddresses] = useState([])
+
+    const generateAddress = async () => {
+        const seed = await mnemonicToSeed(mnemonic)
+        const derivationPath = `m/44'/60'/${currentIndex}'/0'`
+        const hdNode = HDNodeWallet.fromSeed(seed)
+        const child = hdNode.derivePath(derivationPath)
+        const privateKey = child.privateKey
+        const wallet = new Wallet(privateKey)
+
+        setCurrentIndex(prev => prev + 1)
+        setAddresses(prev => [...prev, wallet.address])
+    }
+
+    return (
+        <div>
+            <button onClick={generateAddress}>Generate Address</button>
+
+            {
+                addresses.map((address, index) => (
+                    <div key={index}>
+                        {address}
+                    </div>
+                ))
+            }
+        </div>
+    )
+}
+
+export default SolanaWallet
+```
+11. Add `SolanaWallet` component to `App.jsx`
+```js
+import { useState } from 'react'
+import SolanaWallet from './SolanaWallet'
+import SolanaWalletSeedPhrase from './SolanaWalletSeedPhrase'
+
+function App() {
+    const [mnemonic, setMnemonic] = useState('')
+
+    return (
+        <div>
+            <SolanaWalletSeedPhrase mnemonic={mnemonic} setMnemonic={setMnemonic} />
+            <SolanaWallet mnemonic={mnemonic} setMnemonic={setMnemonic} />
+        </div>
+    )
+}
+
+export default App
+```
+
+![](images/wallet.avif)
