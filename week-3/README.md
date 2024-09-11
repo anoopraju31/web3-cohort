@@ -5,6 +5,9 @@
     - [**Key Features of Keccak-256**](#key-features-of-keccak-256)
     - [**How it differs from SHA-256**](#how-it-differs-from-sha-256)
     - [**Properties of Keccak-256 hashing algorithm**](#properties-of-keccak-256-hashing-algorithm)
+- [**Public-Private Key Pair in Ethereum**](#public-private-key-pair-in-ethereum)
+- [**Public-Private Key Pair in Solana**](#public-private-key-pair-in-solana)
+- [**RPC, JSON-RPC**](#rpc-json-rpc)
 
 
 ## Keccak-256
@@ -40,3 +43,22 @@ Keccak-256 is a cryptographic hash function, which is part of the Keccak family.
 ## Public-Private Key Pair in Solana
 - `Solana` public keys are `32 bytes` (5W4oGgDHqir3KNEcmiMn6tNHmbWjC7PgW11sk4AwWbpe). 
 - No need for **hashing/chopping**.
+
+## RPC, JSON-RPC
+`RPC`, or `Remote Procedure Call`, is a protocol or mechanism that allows a program to *execute a procedure* (*subroutine*) on a different address space, often on another computer across a network, as if it were a local procedure call. 
+- The key idea behind RPC is to abstract the communication between distributed systems, so developers can invoke methods on remote systems without needing to deal with the complexities of the network.
+
+- Popular **RPC** implementations include:
+    - **gRPC** (used in *microservices*)
+    - **XML-RPC**
+    - **JSON-RPC**
+
+### JSON-RPC
+- `JSON-RPC` is a **lightweight remote procedure call (RPC) protocol** that uses `JSON` (**JavaScript Object Notation**) as the data format. 
+- It is **transport-agnostic**, meaning it can be used over various communication protocols like **HTTP**, **WebSockets**, or **any other bi-directional transport**.
+- It allows for communication between a client and a server over a network. JSON-RPC enables a client to invoke methods on a server and receive responses, similar to traditional RPC protocols but using JSON for data formatting.
+- [](images/json-rpc.avif)
+- As a user, you interact with the blockchain for two purposes - 
+    1. To send a `transction`
+    2. To fetch some details from the blockchain (balances etc)
+- In both of these, the way to interact with the blockchain is using JSON-RPC
