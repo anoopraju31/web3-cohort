@@ -13,6 +13,7 @@
     - [**What is Gwei?**](#what-is-gwei)
     - [**What is Lamports?**](#what-is-lamports)
 - [**RPC Server**](#rpc-server)
+- [**Common RPC calls on Solana**](#common-rpc-calls-on-solana)
 
 ## Keccak-256
 Keccak-256 is a cryptographic hash function, which is part of the Keccak family. Keccak was chosen as the winner of the NIST (National Institute of Standards and Technology) SHA-3 competition and became the basis for the SHA-3 (Secure Hash Algorithm 3) standard.
@@ -103,3 +104,33 @@ console.log(LAMPORTS_PER_SOL)
     2. `Alchemy`
     3. `Helius`
     4. `Infura`
+
+## Common RPC calls on Solana
+1. **Get account info**
+    - Retrieves information about a specific account.
+    ```js
+    {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "getAccountInfo",
+        "params": ["Eg4F6LW8DD3SvFLLigYJBFvRnXSBiLZYYJ3KEePDL95Q"]
+    }
+    ``` 
+2. **Get balance**
+    - Gets the balance for a given account
+    ```js
+    {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "getBalance",
+        "params": ["Eg4F6LW8DD3SvFLLigYJBFvRnXSBiLZYYJ3KEePDL95Q"]
+    }
+    ```
+3. **Get Transaction count**
+    ```js
+        {
+            "jsonrpc": "2.0",
+            "id": 1,
+            "method": "getTransactionCount"
+        }
+    ``` 
