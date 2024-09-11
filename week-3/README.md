@@ -8,6 +8,10 @@
 - [**Public-Private Key Pair in Ethereum**](#public-private-key-pair-in-ethereum)
 - [**Public-Private Key Pair in Solana**](#public-private-key-pair-in-solana)
 - [**RPC, JSON-RPC**](#rpc-json-rpc)
+- [**Wei, Lamports**](#wei-lamports)
+    - [**What is Wei?**](#what-is-wei)
+    - [**What is Gwei?**](#what-is-gwei)
+    - [**What is Lamports?**](#what-is-lamports)
 
 
 ## Keccak-256
@@ -62,3 +66,25 @@ Keccak-256 is a cryptographic hash function, which is part of the Keccak family.
     1. To send a `transction`
     2. To fetch some details from the blockchain (balances etc)
 - In both of these, the way to interact with the blockchain is using JSON-RPC
+
+## Wei, Lamports
+
+### What is Wei?
+- The `wei` is the smallest unit of `Ether`. It's similar to how a cent is to a dollar.
+- It is equivalent to `1e-18` ether.
+- 1 Ether (ETH) = 10^18 Wei.
+
+### Waht is Gwei?
+- A larger unit of Ether commonly used in the context of gas prices.
+- It is equivalent to `1e-9` ether.
+- 1 Ether (ETH) = 10^9 Gwei.
+
+### What is Lamports?
+- In the Solana blockchain, the smallest unit of currency is called a lamport. Just as wei is to Ether in Ethereum, lamports are to SOL (the native token of Solana).
+- It is equivalent to `1e-9` SOL.
+- 1 SOL = 10^9 Lamports.
+```js
+const { LAMPORTS_PER_SOL } = require("@solana/web3.js")
+
+console.log(LAMPORTS_PER_SOL)
+```
